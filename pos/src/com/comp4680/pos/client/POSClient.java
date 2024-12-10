@@ -18,7 +18,8 @@ public class POSClient {
             Socket skt = new Socket("localhost",12345); //New Socket for connection
             // 2. Create the DisplayHandler object and run the thread. Beware you may need
             // to pass some arguments (3 marks)
-
+            DisplayHandler handler = new DisplayHandler(skt); 
+            handler.start();
             // 3. Get the output stream from socket and bind the stream to "pw" object and
             // auto flush (2 marks)
 
@@ -59,7 +60,7 @@ class DisplayHandler/*
      * inside this method will be executed in a separate thread. Add any annotation
      * needed (2 marks)
      */
-    public void xxx(){
+    public void start(){
         BufferedReader br;
         try {
             // 9. Get the input stream from socket and then bind to the "br" object (2 marks)
