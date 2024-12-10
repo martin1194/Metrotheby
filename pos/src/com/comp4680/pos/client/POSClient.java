@@ -34,7 +34,9 @@ public class POSClient {
                 }
             }
             // 5. Do you need to close something? (3 marks)
-
+            pw.close();     //Close PrintWriter
+            input.close();  //Close BufferedReader
+            skt.close();    //Close socket
         } catch (Exception e) {
             System.out.println("Connection Closed");
         } // end of try-catch
