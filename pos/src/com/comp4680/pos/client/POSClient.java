@@ -63,7 +63,7 @@ class DisplayHandler/*
      * inside this method will be executed in a separate thread. Add any annotation
      * needed (2 marks)
      */
-    public void start(){
+    public void run(){
         BufferedReader br;
         try {
             // 9. Get the input stream from socket and then bind to the "br" object (2 marks)
