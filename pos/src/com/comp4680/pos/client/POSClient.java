@@ -28,7 +28,7 @@ public class POSClient {
             String msg = "";
             while ((msg = input.readLine()) != null) {
                 // 4. Send the message to server using "pw" object (1 marks)
-
+                pw.println(msg);  //Send message to server though object(PrintWriter)
                 if (msg.equals("q")) {
                     break;
                 }
