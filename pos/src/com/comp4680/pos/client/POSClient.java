@@ -22,6 +22,7 @@ public class POSClient {
             handler.start(); //Start the Display Handler
             // 3. Get the output stream from socket and bind the stream to "pw" object and
             // auto flush (2 marks)
+            pw = new PrintWriter(skt.getOutputStream(), true);
 
             input = new BufferedReader(new InputStreamReader(System.in));
             String msg = "";
