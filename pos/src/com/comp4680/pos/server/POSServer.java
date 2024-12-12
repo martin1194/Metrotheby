@@ -3,6 +3,7 @@ package pos.src.com.comp4680.pos.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,11 +17,19 @@ public class POSServer {
         AuctionEvents events = new AuctionEvents();
         try {
             /* 1. How to create ServerSocket and assign to "ssk" object? (2 marks) */
+
+            //Define a variable 
+            ssk = new ServerSocket(12345);
             while (true) {
                 /*
                  * 2. How to create ClientHandler object and run the thread? Beware, you may
                  * need to pass some arguments (2 marks)
                  */
+                System.out.println("Waiting for connection");
+                Socket ClientSocket = ssk.accept();
+                ClientHandler ch = new ClientHandler(ClientSocket, events);
+                ch.start();
+                System.out.println("Connect in");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -29,7 +38,7 @@ public class POSServer {
 
 }// end of POSServer
 
-class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks) */ {
+class ClientHandler extends Thread /* 3. How to make ClientHandler become multithread? (1 marks) */ {
 
     private Socket socket = null;
     private AuctionEvents events = null;
@@ -42,7 +51,7 @@ class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks
      * 4. When you pass something to contructor in main(), you also need to add the
      * arguments here. (2 marks)
      */
-    public ClientHandler(Socket socket, AuctionEvents events) {
+    public ClientHandler(Socket socket, AuctionEvents events) {         //Init Cli
         this.socket = socket;
         this.events = events;
         this.SetupInOutStreams();
@@ -52,6 +61,9 @@ class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks
     private void CloseConnection() {
         try {
             /* 5. How to close the connection? (3 marks) */
+            out.close();
+            in.close();
+            socket.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,6 +75,8 @@ class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks
              * 6. How to create input and output streams from socket? Beware output stream
              * need auto flush (3 marks)
              */
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,6 +85,7 @@ class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks
     private void SendToClient(String msg) {
         try {
             // 7. How to send "msg" to client? (1 marks)
+            out.println(msg);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,6 +95,8 @@ class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks
         String cmd = "";
         try {
             // 8. How to get user input from client? (1 marks)
+            String line = in.readLine();
+            return line;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,7 +108,7 @@ class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks
      * inside this method will be executed in a separate thread. Add any annotation
      * needed (2 marks)
      */
-    public void xxx() {
+    public void run() {
         /****************** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ******************/
         /****************** DON'T CHANGE ANYTHING BEYOND THIS LINE ******************/
         /****************** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ******************/
