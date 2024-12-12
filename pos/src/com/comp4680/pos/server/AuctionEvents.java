@@ -109,7 +109,9 @@ public class AuctionEvents {
         targetProductId = this.validateProductId(targetProductId);
         lock.lock();
         try {
-
+            while (currentProductId < targetProductId) {
+                isCurrentBidCompleted.await();              // Wait until met the condition(Bid completed)
+            }
             return this.getCurrentProduct();
         } catch (Exception e) {
             e.printStackTrace();
