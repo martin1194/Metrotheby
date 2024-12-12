@@ -18,8 +18,9 @@ public class POSClient {
             Socket skt = new Socket("localhost",12345); //New Socket for connection
             // 2. Create the DisplayHandler object and run the thread. Beware you may need
             // to pass some arguments (3 marks)
-            DisplayHandler handler = new DisplayHandler(skt); //Create object(DisplayHandler)
-            handler.start(); //Start the Display Handler
+            DisplayHandler handler = new DisplayHandler(skt);       //Create object(DisplayHandler)
+            handler.start();                                        //Start the Display Handler
+
             // 3. Get the output stream from socket and bind the stream to "pw" object and
             // auto flush (2 marks)
             pw = new PrintWriter(skt.getOutputStream(), true);
