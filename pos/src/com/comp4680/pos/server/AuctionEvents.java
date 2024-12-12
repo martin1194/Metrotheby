@@ -64,6 +64,7 @@ public class AuctionEvents {
             // Check if the target price is reached, if so, set the next product
             if (this.isTargetPriceReached(id)) {
                 this.currentProductId++;
+                isCurrentBidCompleted.signalAll(); //Wakes up all waiting threads. 
             }
 
             // return true for successful bid
