@@ -58,7 +58,8 @@ class DisplayHandler extends Thread{
      * 7. When you pass something to contructor in main(), you also need to add the
      * arguments here and assign to some local variables. (2 marks)
      */
-    public DisplayHandler() {
+    public DisplayHandler(Socket skt) {
+        this.skt = skt;     //Put socket in this class
     }
 
     /*
