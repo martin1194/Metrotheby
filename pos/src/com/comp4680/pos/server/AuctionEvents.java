@@ -50,6 +50,13 @@ public class AuctionEvents {
     public boolean placeBid(int id, float bid, Date originalTimestamp) {
         lock.lock();        //Lock function from ReentrantLock for safety
         try {
+
+            // Check the original Timestamp is due or not
+            if (this.isOutDated(id, originalTimestamp)){
+                return false;               //If outdated return false
+            }
+
+
             // Check if the target price is reached before client placing the bid
             if (this.isTargetPriceReached(id)) {
                 return false;
