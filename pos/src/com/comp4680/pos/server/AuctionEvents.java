@@ -29,7 +29,13 @@ public class AuctionEvents {
      * auction is over, return null
      */
     public /* 3. How to thread safe this method? (1 marks) */ Products getCurrentProduct() {
-        return products.stream().filter(p -> p.getId() == this.currentProductId).findFirst().orElse(null);
+        lock.lock();        //Lock function from ReentrantLock for safety
+        try{
+            return products.stream().filter(p -> p.getId() == this.currentProductId).findFirst().orElse(null);
+        } finally{
+            lock.unlock();  //Unock function from ReentrantLock for safety
+        }
+        
     }
 
     /* 4. Add thread safe in correct place inside this method (4 marks) */
