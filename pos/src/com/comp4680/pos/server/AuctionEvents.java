@@ -91,7 +91,7 @@ public class AuctionEvents {
     public Products abortBidAndWaitForProducts(int targetProductId) {
         // Validates the target product ID before proceeding
         targetProductId = this.validateProductId(targetProductId);
-
+        lock.lock();
         try {
 
             return this.getCurrentProduct();
@@ -99,6 +99,7 @@ public class AuctionEvents {
             e.printStackTrace();
             return null;
         } finally {
+            lock.unlock();
         }
     }
 
