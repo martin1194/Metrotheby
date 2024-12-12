@@ -19,8 +19,8 @@ public class AuctionEvents {
         this.initProducts();
         this.currentProductId = products.stream().mapToInt(Products::getId).min().orElseThrow();
         this.maxProductId = products.stream().mapToInt(Products::getId).max().orElseThrow();
-        this.lock = ; /* 1. How to initialize the ReentrantLock (1 marks) */
-        this.isCurrentBidCompleted = ; /* 2. How to initialize the Condition (1 marks) */
+        this.lock = new ReentrantLock(); /* 1. How to initialize the ReentrantLock (1 marks) */
+        this.isCurrentBidCompleted = lock.newCondition(); /* 2. How to initialize the Condition (1 marks) */
     }
 
     /*
