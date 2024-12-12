@@ -15,7 +15,8 @@ public class POSClient {
         try {
             // 1. Create a Socket and connect to localhost, port 12345. And assign to "skt"
             // object (2 marks)
-            Socket skt = new Socket("localhost",12345); //New Socket for connection
+            Socket skt = new Socket("localhost",12345);     //New Socket for connection
+
             // 2. Create the DisplayHandler object and run the thread. Beware you may need
             // to pass some arguments (3 marks)
             DisplayHandler handler = new DisplayHandler(skt);       //Create object(DisplayHandler)
@@ -29,7 +30,7 @@ public class POSClient {
             String msg = "";
             while ((msg = input.readLine()) != null) {
                 // 4. Send the message to server using "pw" object (1 marks)
-                pw.println(msg);  //Send message to server though object(PrintWriter)
+                pw.println(msg);    //Send message to server though object(PrintWriter)
                 if (msg.equals("q")) {
                     break;
                 }
