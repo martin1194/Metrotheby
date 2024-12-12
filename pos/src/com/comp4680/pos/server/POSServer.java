@@ -42,7 +42,9 @@ class ClientHandler /* 3. How to make ClientHandler become multithread? (1 marks
      * 4. When you pass something to contructor in main(), you also need to add the
      * arguments here. (2 marks)
      */
-    public ClientHandler() {
+    public ClientHandler(Socket socket, AuctionEvents events) {
+        this.socket = socket;
+        this.events = events;
         this.SetupInOutStreams();
         this.curProduct = null;
     }
