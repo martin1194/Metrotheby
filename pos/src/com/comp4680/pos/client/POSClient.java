@@ -46,10 +46,11 @@ public class POSClient {
 
 }// end of class POSClient
 
-class DisplayHandler/*
+class DisplayHandler extends Thread{
+                    /*
                      * 6. Which abstract class should be inherit from so that make the
                      * DisplayHandler class become multi-thread (1 marks)
-                     */ {
+                     */ 
 
     private Socket skt = null;
 
