@@ -15,7 +15,7 @@ public class POSClient {
         try {
             // 1. Create a Socket and connect to localhost, port 12345. And assign to "skt"
             // object (2 marks)
-            Socket skt = new Socket("localhost",12345);     //New Socket for connection
+            skt = new Socket("localhost",12345);     //New Socket for connection
 
             // 2. Create the DisplayHandler object and run the thread. Beware you may need
             // to pass some arguments (3 marks)
