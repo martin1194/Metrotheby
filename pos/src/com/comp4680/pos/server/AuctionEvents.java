@@ -48,6 +48,7 @@ public class AuctionEvents {
      * true
      */
     public boolean placeBid(int id, float bid, Date originalTimestamp) {
+        lock.lock();        //Lock function from ReentrantLock for safety
         try {
             // Check if the target price is reached before client placing the bid
             if (this.isTargetPriceReached(id)) {
@@ -71,6 +72,7 @@ public class AuctionEvents {
             e.printStackTrace();
             return false;
         } finally {
+            lock.unlock();          //Unlock function from ReentrantLock for safety
         }
     }// end of placeBid()
 
