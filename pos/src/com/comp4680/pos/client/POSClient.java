@@ -82,7 +82,7 @@ class DisplayHandler extends Thread{
                 System.out.println(msg);
             }
             // 11. Close the input stream (1 marks)
-
+            br.close();     //Close input stream
         } catch (Exception e) {
             System.out.println("Connection Closed");
         } // end of try-catch
