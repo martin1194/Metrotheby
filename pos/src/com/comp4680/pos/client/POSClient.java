@@ -71,7 +71,7 @@ class DisplayHandler extends Thread{
         BufferedReader br;
         try {
             // 9. Get the input stream from socket and then bind to the "br" object (2 marks)
-
+            BufferedReader br = new BufferedReader(new InputStreamReader(skt.getInputStream()));        //Get input stream for reading server messages
             String msg = "";
             /* 10. How can you get the message from "br"/server side continuously? (1 marks) */
             while ((msg = ) != null ) {
